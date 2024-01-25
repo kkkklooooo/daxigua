@@ -44,3 +44,4 @@ document.getElementsByTagName("title")[0].innerText = '合成大西瓜';
 let selectModal = false;
 
 let autorate=200
+let fuck=false
