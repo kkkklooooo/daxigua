@@ -43,3 +43,4 @@ document.getElementsByTagName("title")[0].innerText = '合成大西瓜';
 // 开启选分弹窗：将 false 改为 true
 let selectModal = false;
 
+let autorate=200

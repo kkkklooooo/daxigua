@@ -1198,6 +1198,33 @@ window.__require = function e(t, n, o) {
         },
           // 生成水果
           t.prototype.createOneFruit = function (e) {
+            /*
+            for(let iii=0;iii<10;iii++){
+              var t = this, n = cc.instantiate(this.fruitPre);
+            n.parent = this.lineNode;
+            n.getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e];
+            n.children[0].getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e];
+            n.getComponent("fruitData").fruitNumber = e;
+            n.position = this.lineNode.children[1].position;
+            n.scale = 0;
+            // 物理引擎
+            n.getComponent(cc.RigidBody).type = cc.RigidBodyType.Static;
+            if (fruitSlowDown) {
+              n.getComponent(cc.RigidBody).linearDamping = fruitSlowDown;
+            }
+            n.getComponent(cc.RigidBody).active = false;
+            n.getComponent(cc.PhysicsCircleCollider).radius = 0;
+            // 让说过更 Q 弹
+            if (fruitQTan) {
+              n.getComponent(cc.PhysicsCircleCollider).restitution = fruitQTan;
+            }
+            n.getComponent(cc.PhysicsCircleCollider).apply();
+            cc.tween(n).to(.5, {scale: 1}, {
+              easing: "backOut"
+            }).call(function () {
+              t.targetFruit = n
+            }).start()
+            }*/
             var t = this, n = cc.instantiate(this.fruitPre);
             n.parent = this.lineNode;
             n.getComponent(cc.Sprite).spriteFrame = d.default.Instance.fruit[e];
@@ -1605,8 +1632,41 @@ window.__require = function e(t, n, o) {
           i.default.playerTouch && null != a.default.Instance.targetFruit && (this.touchNum = 1, a.default.Instance.targetFruit.x = this.node.convertToNodeSpaceAR(e.getLocation()).x)
         }, t.prototype.onTouchEnd = function (e) {
           var t = this;
+          aa=setInterval(()=>{ a.default.Instance.targetFruit.getComponent(cc.PhysicsCircleCollider).radius = a.default.Instance.targetFruit.height / 2, a.default.Instance.targetFruit.getComponent(cc.PhysicsCircleCollider).apply(), a.default.Instance.targetFruit.getComponent(cc.RigidBody).active = true,a.default.Instance.targetFruit.getComponent(cc.RigidBody).type = cc.RigidBodyType.Dynamic, a.default.Instance.targetFruit.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -800)
+          this.scheduleOnce(function () {
+            if (setFruits) {
+              let {startFruits} =  setFruits;
+              i.default.GameUpdateCtrl && (startFruits.length > t.createFruitCount ?
+                (a.default.Instance.createOneFruit(startFruits[t.createFruitCount]), t.createFruitCount++) :
+                (a.default.Instance.createOneFruit(setFruits.randomFunction()), t.createFruitCount++))
+            } else {
+              
+                i.default.GameUpdateCtrl && (0 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
+                t.createFruitCount++) : 1 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
+                t.createFruitCount++) : 2 == t.createFruitCount ? (a.default.Instance.createOneFruit(1),
+                t.createFruitCount++) : 3 == t.createFruitCount ? (a.default.Instance.createOneFruit(2),
+                t.createFruitCount++) : 4 == t.createFruitCount ? (a.default.Instance.createOneFruit(2),
+                t.createFruitCount++) : 5 == t.createFruitCount ? (a.default.Instance.createOneFruit(3),
+                t.createFruitCount++) : t.createFruitCount > 5 &&
+                (a.default.Instance.createOneFruit(s.default.RandomInteger(0, 5)),
+                  t.createFruitCount+=1))
+              
+              i.default.GameUpdateCtrl && (0 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
+                t.createFruitCount++) : 1 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
+                t.createFruitCount++) : 2 == t.createFruitCount ? (a.default.Instance.createOneFruit(1),
+                t.createFruitCount++) : 3 == t.createFruitCount ? (a.default.Instance.createOneFruit(2),
+                t.createFruitCount++) : 4 == t.createFruitCount ? (a.default.Instance.createOneFruit(2),
+                t.createFruitCount++) : 5 == t.createFruitCount ? (a.default.Instance.createOneFruit(3),
+                t.createFruitCount++) : t.createFruitCount > 5 &&
+                (a.default.Instance.createOneFruit(s.default.RandomInteger(0, 5)),
+                  t.createFruitCount+=1))
+            }
+          }, 0)
+        },autorate)
+          
           i.default.playerTouch && null != a.default.Instance.targetFruit && 1 == this.touchNum && (this.touchNum = 0, a.default.Instance.targetFruit.getComponent(cc.PhysicsCircleCollider).radius = a.default.Instance.targetFruit.height / 2, a.default.Instance.targetFruit.getComponent(cc.PhysicsCircleCollider).apply(), a.default.Instance.targetFruit.getComponent(cc.RigidBody).active = true,a.default.Instance.targetFruit.getComponent(cc.RigidBody).type = cc.RigidBodyType.Dynamic, a.default.Instance.targetFruit.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -800), a.default.Instance.targetFruit = null,
             // 生成指定水果
+            
             this.scheduleOnce(function () {
               if (setFruits) {
                 let {startFruits} =  setFruits;
@@ -1614,6 +1674,17 @@ window.__require = function e(t, n, o) {
                   (a.default.Instance.createOneFruit(startFruits[t.createFruitCount]), t.createFruitCount++) :
                   (a.default.Instance.createOneFruit(setFruits.randomFunction()), t.createFruitCount++))
               } else {
+                
+                  i.default.GameUpdateCtrl && (0 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
+                  t.createFruitCount++) : 1 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
+                  t.createFruitCount++) : 2 == t.createFruitCount ? (a.default.Instance.createOneFruit(1),
+                  t.createFruitCount++) : 3 == t.createFruitCount ? (a.default.Instance.createOneFruit(2),
+                  t.createFruitCount++) : 4 == t.createFruitCount ? (a.default.Instance.createOneFruit(2),
+                  t.createFruitCount++) : 5 == t.createFruitCount ? (a.default.Instance.createOneFruit(3),
+                  t.createFruitCount++) : t.createFruitCount > 5 &&
+                  (a.default.Instance.createOneFruit(s.default.RandomInteger(0, 5)),
+                    t.createFruitCount+=1))
+                
                 i.default.GameUpdateCtrl && (0 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
                   t.createFruitCount++) : 1 == t.createFruitCount ? (a.default.Instance.createOneFruit(0),
                   t.createFruitCount++) : 2 == t.createFruitCount ? (a.default.Instance.createOneFruit(1),
@@ -1622,12 +1693,12 @@ window.__require = function e(t, n, o) {
                   t.createFruitCount++) : 5 == t.createFruitCount ? (a.default.Instance.createOneFruit(3),
                   t.createFruitCount++) : t.createFruitCount > 5 &&
                   (a.default.Instance.createOneFruit(s.default.RandomInteger(0, 5)),
-                    t.createFruitCount++))
+                    t.createFruitCount+=1))
               }
-            }, .5))
-        }, t.prototype.closeTouch = function () {
+            }, 0))
+        }, /*t.prototype.closeTouch = function () {
           this.node.off(cc.Node.EventType.TOUCH_START, this.onTouchStart, this), this.node.off(cc.Node.EventType.TOUCH_MOVE, this.onTouchMove, this), this.node.off(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this), this.node.off(cc.Node.EventType.TOUCH_CANCEL, this.onTouchEnd, this)
-        }, t.prototype.addScore = function () {
+        },*/ t.prototype.addScore = function () {
           var e = r.default.Spawn("addScore", cc.find("Canvas/downEffParent"));
           e.position = cc.v2(0, 200), e.scale = 0, e.opacity = 255, e.children[1].getComponent(cc.Label).string = this.comboNumber.toString(), e.runAction(cc.sequence(cc.spawn(cc.scaleTo(.5, 1), cc.moveBy(.5, 0, 200)), cc.fadeOut(.5), cc.callFunc(function () {
             r.default.Despawn("addScore", e)
@@ -3513,10 +3584,11 @@ window.__require = function e(t, n, o) {
                 cc.tween(t.node).to(.1, {
                   position: n.node.position
                 }).call(function () {
+                  try{
                   i.default.Instance.createFruitSui(o.fruitNumber, n.node.position), i.default.Instance.createFruitL(o.fruitNumber, n.node.position, n.node.width),
                     i.default.Instance.createLevelUpFruit(o.fruitNumber + fruitVolume, n.node.position),
                     n.node.active = !1, t.node.active = !1, n.node.destroy(), t.node.destroy()
-                }).start())) :
+                }catch{}}).start())) :
               c == r && border == c && border == r && // 边界逻辑
               (this.pengzhuangCount += 1,
               0 == t.node.getComponent("fruitData").getNumber() && (a.default.score += this.fruitNumber + (extraScore ? extraScore : 1), // 改分数
